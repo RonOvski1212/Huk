@@ -104,9 +104,24 @@ const SliderSecond = (props) => {
 const SliderWithFirstFeatch = withSlider(SliderFirst, getDataFromFirstFetch);
 const SliderWithSecondFeatch = withSlider(SliderSecond, getDataFromSecondFetch);
 
+const withLogger = (WrappedComponent) => (props) => {
+  useEffect(() => {
+    console.log("first render!");
+  }, []);
+
+  return <WrappedComponent {...props} />;
+};
+
+const Hello = () => {
+  return <h1>Hello</h1>;
+};
+
+const HelloWithLogger = withLogger(Hello);
+
 function App() {
   return (
     <>
+      <HelloWithLogger />
       <SliderWithFirstFeatch />
       <SliderWithSecondFeatch />
     </>
